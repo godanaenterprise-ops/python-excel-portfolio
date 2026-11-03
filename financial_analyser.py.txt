@@ -1,0 +1,38 @@
+
+from datetime import datetime
+
+print("=" * 40)
+print("       FINANCIAL ANALYSER PRO")
+print("=" * 40)
+
+try:
+    income = float(input("Enter total income (KSh): "))
+    expenses = float(input("Enter total expenses (KSh): "))
+
+    if income < 0 or expenses < 0:
+        raise ValueError("Amounts cannot be negative.")
+
+    profit = income - expenses
+
+    print("\nFINANCIAL REPORT")
+    print("-" * 40)
+    print(f"Date: {datetime.now():%d-%m-%Y}")
+    print(f"Income: KSh {income:,.2f}")
+    print(f"Expenses: KSh {expenses:,.2f}")
+    print(f"Net profit: KSh {profit:,.2f}")
+
+    if income > 0:
+        margin = (profit / income) * 100
+        print(f"Profit margin: {margin:.2f}%")
+
+    if profit > 0:
+        print("Status: PROFIT")
+    elif profit < 0:
+        print("Status: LOSS")
+    else:
+        print("Status: BREAK EVEN")
+
+except ValueError as error:
+    print("Invalid input:", error)
+
+print("\nAnalysis completed!")
